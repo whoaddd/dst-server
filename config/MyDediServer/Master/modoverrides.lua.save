@@ -1,0 +1,6 @@
+return {
+  ["ServerModSetup("378160973")  -- Global Positions
+ServerModSetup("374550642")  -- Health Info
+ServerModSetup("458587300")"] = { enabled = true },
+  ["workshop-1580931133"] = { enabled = true }
+}

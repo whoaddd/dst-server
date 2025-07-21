@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  dst-server:
+    build: .
+    container_name: dst-server
+    ports:
+      - "10999:10999/udp"
+      - "11000:11000/udp"
+      - "8766:8766/udp"
+    volumes:
+      - ~/Steam/steamapps/common/dst_server/bin:/dst-server/bin:ro
+      - ~/Steam/steamapps/common/dst_server/data:/dst-server/data:ro
+      - ~/Steam/steamapps/common/dst_server/mods:/dst-server/mods_base:ro
+      - ./config:/dst-server/config
+      - ./saves:/dst-server/saves
+      - ./mods:/dst-server/mods
+    dns:  
+      - 8.8.8.8
+      - 1.1.1.1
+    environment:
+      - TZ=Asia/Shanghai  # 设置时区
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
